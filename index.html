@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="uk">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>КБЖВ</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="icon.png">
+  <link rel="shortcut icon" href="icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icon.png">
+
+  <link rel="stylesheet" href="style.css">
+
+  <meta name="theme-color" content="#1e1f29">
+
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- ================= NAVIGATION ================= -->
+
+    <nav class="tabs">
+
+      <button class="tab active" data-tab="blocks">
+        КБЖВ Блоки:
+      </button>
+
+      <button class="tab" data-tab="calculator">
+        КБЖВ Канкулятор:
+      </button>
+
+      <button class="tab" data-tab="archive">
+        КБЖВ Архів:
+      </button>
+
+    </nav>
+
+
+    <!-- ================================================= -->
+    <!--                    BLOCKS                         -->
+    <!-- ================================================= -->
+
+    <section class="page active" id="blocks">
+
+      <div class="wrap">
+
+        <header>
+
+          <h1>
+            Макронутрієнти та енергетична цінність продуктів:
+          </h1>
+
+          <p class="lead">
+            Натисніть на іконку для копіювання кбжв з блоку
+            з можливістю вказати вагу продукту
+          </p>
+
+          <div class="search-container">
+
+            <div class="search-wrapper">
+
+              <input
+                type="text"
+                id="search"
+                placeholder="Пошук продукту..."
+              >
+
+              <span id="clear-search">✕</span>
+
+            </div>
+
+          </div>
+
+
+          <!-- ================= DATABASE BUTTONS ================= -->
+
+          <div class="database-buttons">
+
+            <button id="export-products">
+              Експорт бази
+            </button>
+
+            <button id="import-products">
+              Імпорт бази
+            </button>
+
+          </div>
+
+
+          <!-- ================= PRODUCT BUTTONS ================= -->
+
+          <div class="add-product-container">
+
+            <button id="add-product">
+              Додати продукт
+            </button>
+
+            <button id="delete-product">
+              Видалити продукт
+            </button>
+
+            <button
+              id="reorder-products"
+              class="reorder-product-button"
+            >
+              Змінити розташування продукту
+            </button>
+
+          </div>
+
+
+          <div
+            id="reorder-hint"
+            class="reorder-hint"
+          >
+            Перетягуйте продукти мишкою, щоб змінити їх порядок.
+          </div>
+
+
+          <input
+            type="file"
+            id="import-file"
+            accept=".json,application/json"
+            hidden
+          >
+
+        </header>
+
+
+        <main>
+
+          <div class="grid" id="grid">
+
+            <!-- ================= PRODUCTS ================= -->
+
+            <article
+              class="food-card"
+              data-text="Яйця"
+              data-kcal="155"
+              data-protein="12"
+              data-fat="10.2"
+              data-carb="0.8"
+            >
+
+              <div class="copy-btn" title="Скопіювати блок">
+
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+
+                  <path
+                    d="M16 21H6a2 2 0 0 1-2-2V7"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+
+                  <rect
+                    x="8"
+                    y="3"
+                    width="13"
+                    height="13"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+
+                </svg>
+
+                <span class="tooltip">
+                  Скопійовано
+                </span>
+
+              </div>
+
+
+              <div
+                class="food-title"
+                style="padding-right:50px"
+              >
+
+                <div class="badge">
+                  Я
+                </div>
+
+                <div>
+
+                  <div class="name">
+                    Яйця
+                  </div>
+
+                  <div class="meta">
+                    100 г
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="kbjv">
+
+                <div class="row">
+                  <div class="key">Калорії</div>
+                  <div class="val">155 ккал</div>
+                </div>
+
+                <div class="row">
+                  <div class="key">Білки</div>
+                  <div class="val">12 г</div>
+                </div>
+
+                <div class="row">
+                  <div class="key">Жири</div>
+                  <div class="val">10.2 г</div>
+                </div>
+
+                <div class="row">
+                  <div class="key">Вуглеводи</div>
+                  <div class="val">0.8 г</div>
+                </div>
+
+              </div>
+
+
+              <div class="full-name">
+                Яйця aro курячі харчові столові L C0
+              </div>
+
+            </article>
+
+
+            <article
+              class="food-card"
+              data-text="Пиво Heineken"
+              data-kcal="42"
+              data-protein="0"
+              data-fat="0"
+              data-carb="3.2"
+            >
+
+              <div class="copy-btn" title="Скопіювати блок">
+
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+
+                  <path
+                    d="M16 21H6a2 2 0 0 1-2-2V7"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+
+                  <rect
+                    x="8"
+                    y="3"
+                    width="13"
+                    height="13"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+
+                </svg>
+
+                <span class="tooltip">
+                  Скопійовано
+                </span>
+
+              </div>
+
+
+              <div
+                class="food-title"
+                style="padding-right:50px"
+              >
+
+                <div class="badge">
+                  PH
+                </div>
+
+                <div>
+
+                  <div class="name">
+                    Пиво Heineken
+                  </div>
+
+                  <div class="meta">
+                    100 мл
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="kbjv">
+
+                <div class="row">
+                  <div class="key">Калорії</div>
+                  <div class="val">42 ккал</div>
+                </div>
+
+                <div class="row">
+                  <div class="key">Білки</div>
+                  <div class="val">0 г</div>
+                </div>
+
+                <div class="row">
+                  <div class="key">Жири</div>
+                  <div class="val">0 г</div>
+                </div>
+
+                <div class="row">
+                  <div class="key">Вуглеводи</div>
+                  <div class="val">3.2 г</div>
+                </div>
+
+              </div>
+
+
+              <div class="full-name">
+                Пиво Heineken світле нефільтроване пастеризоване,
+                напій алкогольний, вміст спирту 5%
+              </div>
+
+            </article>
+
+          </div>
+
+        </main>
+
+
+        <footer class="site-footer">
+
+          © 2026 Усі права захищено · Власник, програміст та дизайнер —
+
+          <strong>
+            Батик Антоній Віталійович · Monderight
+          </strong>
+
+        </footer>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!--                  CALCULATOR                       -->
+    <!-- ================================================= -->
+
+    <section class="page" id="calculator">
+
+      <div class="wrap">
+
+        <header>
+
+          <h1>
+            КБЖВ калькулятор підсумку:
+          </h1>
+
+          <p class="lead">
+            Вставте уже скопійовані дані із вкладки кбжв блоки
+            і розрахуйте денний підсумок кбжв
+          </p>
+
+        </header>
+
+        <main>
+
+          <div class="paste-box">
+
+            <textarea
+              id="calc-input"
+              placeholder="Вставте сюди:
+Продукт, для ### грам - ### ккал / ### білка / ### жирів / ### вуглеводів"
+            ></textarea>
+
+            <div class="buttons">
+
+              <button id="calc-add">
+                Додати
+              </button>
+
+              <button id="calc-clear-text">
+                Очистити текст
+              </button>
+
+              <button id="calc-clear-blocks">
+                Очистити блоки
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <section class="tracker">
+
+            <h2>
+              Денний підсумок:
+            </h2>
+
+            <div class="totals">
+
+              <div>
+                Ккал:
+                <span id="kcal">0</span>
+              </div>
+
+              <div>
+                Б:
+                <span id="protein">0</span> г
+              </div>
+
+              <div>
+                Ж:
+                <span id="fat">0</span> г
+              </div>
+
+              <div>
+                В:
+                <span id="carb">0</span> г
+              </div>
+
+            </div>
+
+
+            <div class="summary-buttons">
+
+              <button id="copy-total">
+                Скопіювати підсумок
+              </button>
+
+              <button id="save-archive">
+                Зберегти в архів
+              </button>
+
+            </div>
+
+
+            <h3>
+              Історія:
+            </h3>
+
+            <div id="calc-log"></div>
+
+          </section>
+
+        </main>
+
+
+        <footer class="site-footer">
+
+          © 2026 Усі права захищено · Власник, програміст та дизайнер —
+
+          <strong>
+            Батик Антоній Віталійович · Monderight
+          </strong>
+
+        </footer>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!--                    ARCHIVE                        -->
+    <!-- ================================================= -->
+
+    <section class="page" id="archive">
+
+      <div class="wrap">
+
+        <header>
+
+          <h1>
+            Архів денних підсумків кбжв:
+          </h1>
+
+          <p class="lead">
+            Тут зберігаються ваші денні підсумки
+          </p>
+
+        </header>
+
+        <main>
+
+          <section class="tracker">
+
+            <h2>
+              Історія:
+            </h2>
+
+            <div id="archive-log"></div>
+
+          </section>
+
+        </main>
+
+
+        <footer class="site-footer">
+
+          © 2026 Усі права захищено · Власник, програміст та дизайнер —
+
+          <strong>
+            Батик Антоній Віталійович · Monderight
+          </strong>
+
+        </footer>
+
+      </div>
+
+    </section>
+
+  </div>
+
+
+  <!-- ================================================= -->
+  <!--              PRODUCT ACTION MODAL                 -->
+  <!-- ================================================= -->
+
+  <div
+    id="product-modal"
+    class="product-modal"
+  >
+
+    <div class="product-modal-box">
+
+      <div class="product-modal-title">
+
+        <span id="product-modal-name">
+          Продукт
+        </span>
+
+      </div>
+
+
+      <div class="product-modal-weight">
+
+        <label for="product-weight">
+          Введіть вагу продукту у грамах:
+        </label>
+
+        <input
+          type="number"
+          id="product-weight"
+          min="0.1"
+          step="0.1"
+          value="100"
+        >
+
+      </div>
+
+
+      <div class="product-modal-actions">
+
+        <button
+          type="button"
+          id="product-cancel"
+          class="product-action-cancel"
+        >
+          Скасувати
+        </button>
+
+        <button
+          type="button"
+          id="product-copy"
+        >
+          Скопіювати
+        </button>
+
+        <button
+          type="button"
+          id="product-calculator"
+        >
+          В калькулятор
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================================================= -->
+  <!--              ADD PRODUCT MODAL                    -->
+  <!-- ================================================= -->
+
+  <div
+    id="add-product-modal"
+    class="product-modal"
+  >
+
+    <div class="product-modal-box add-product-modal-box">
+
+      <div class="product-modal-title">
+        Додати продукт
+      </div>
+
+
+      <div class="add-product-form">
+
+        <div class="add-product-field">
+
+          <label for="new-product-name">
+            Назва продукту:
+          </label>
+
+          <input
+            type="text"
+            id="new-product-name"
+            placeholder="Уведіть назву продукту..."
+          >
+
+        </div>
+
+
+        <div class="add-product-field">
+
+          <label for="new-product-kcal">
+            Калорії на 100 г:
+          </label>
+
+          <input
+            type="number"
+            id="new-product-kcal"
+            min="0"
+            step="0.1"
+            placeholder="0"
+          >
+
+        </div>
+
+
+        <div class="add-product-field">
+
+          <label for="new-product-protein">
+            Білок на 100 г:
+          </label>
+
+          <input
+            type="number"
+            id="new-product-protein"
+            min="0"
+            step="0.1"
+            placeholder="0"
+          >
+
+        </div>
+
+
+        <div class="add-product-field">
+
+          <label for="new-product-fat">
+            Жири на 100 г:
+          </label>
+
+          <input
+            type="number"
+            id="new-product-fat"
+            min="0"
+            step="0.1"
+            placeholder="0"
+          >
+
+        </div>
+
+
+        <div class="add-product-field">
+
+          <label for="new-product-carb">
+            Вуглеводи на 100 г:
+          </label>
+
+          <input
+            type="number"
+            id="new-product-carb"
+            min="0"
+            step="0.1"
+            placeholder="0"
+          >
+
+        </div>
+
+
+        <div class="add-product-field">
+
+          <label for="new-product-description">
+            Опис продукту:
+          </label>
+
+          <textarea
+            id="new-product-description"
+            placeholder="Уведіть опис продукту..."
+          ></textarea>
+
+        </div>
+
+      </div>
+
+
+      <div class="product-modal-actions">
+
+        <button
+          type="button"
+          id="add-product-cancel"
+          class="product-action-cancel"
+        >
+          Скасувати
+        </button>
+
+        <button
+          type="button"
+          id="add-product-save"
+        >
+          Зберегти
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================================================= -->
+  <!--              DELETE PRODUCT MODAL                 -->
+  <!-- ================================================= -->
+
+  <div
+    id="delete-product-modal"
+    class="product-modal"
+  >
+
+    <div class="product-modal-box delete-product-modal-box">
+
+      <div class="product-modal-title">
+        Видалити продукт
+      </div>
+
+
+      <div
+        id="delete-product-list"
+        class="delete-product-list"
+      ></div>
+
+
+      <div class="product-modal-actions">
+
+        <button
+          type="button"
+          id="delete-product-cancel"
+          class="product-action-cancel"
+        >
+          Скасувати
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================================================= -->
+  <!--                  TEXT EDIT MODAL                  -->
+  <!-- ================================================= -->
+
+  <div
+    id="archive-text-modal"
+    class="product-modal"
+  >
+
+    <div class="product-modal-box archive-text-modal-box">
+
+      <div class="product-modal-title">
+        Змінити текст
+      </div>
+
+
+      <div class="add-product-field">
+
+        <label for="archive-text-input">
+          Текст денного підсумку:
+        </label>
+
+        <textarea
+          id="archive-text-input"
+          class="archive-text-input"
+        ></textarea>
+
+      </div>
+
+
+      <div class="product-modal-actions">
+
+        <button
+          type="button"
+          id="archive-text-cancel"
+          class="product-action-cancel"
+        >
+          Скасувати
+        </button>
+
+        <button
+          type="button"
+          id="archive-text-save"
+        >
+          Зберегти
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>
