@@ -1,0 +1,16 @@
+{
+  "version": 99,
+  "exported_at": "2026-09-01T13:05:43.398Z",
+  "products": [
+    {
+      "id": "b0cf9f09-fa42-406d-8f08-7df8d54cdfc09",
+      "name": "Продукт",
+      "kcal": 999,
+      "protein": 99.9,
+      "fat": 99.9,
+      "carb": 99.9,
+      "unit": "г",
+      "full_name": "Продукт за замовчуванням"
+    }
+  ]
+}
